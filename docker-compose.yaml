@@ -10,17 +10,18 @@ services:
     depends_on:
       - backend_core_db
     env_file:
-      - ./envs/.env_db
+      - .envs/.env_db
+      - ./backend_core/.envs/.env
     networks:
       - backend_core_db-network
   backend_core_db:
-    image: postgres:15.1
+    image: postgres:15.2-alpine
     ports:
       - 5433:5432
     volumes:
       - postgres:/var/lib/postgresql/data
     env_file:
-      - ./envs/.env_db
+      - .envs/.env_db
     networks:
       - backend_core_db-network
 
